@@ -1,4 +1,3 @@
-"""Week 12: public test API. Only fictional availability data is exposed."""
 import json
 import logging
 import os
@@ -31,7 +30,6 @@ def public_availability(table):
     available = date.fromisoformat(item["nextAvailableDate"])
     if available <= booked:
         raise ValueError("Invalid availability dates")
-    # An explicit allowlist prevents accidental disclosure of private DB fields.
     return {"demo": True, "freelancer": "샘플 프리랜서",
             "canAcceptNewRequests": item["canAcceptNewRequests"],
             "bookedUntil": booked.isoformat(),
