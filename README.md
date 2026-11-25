@@ -22,7 +22,9 @@ python -m unittest discover -s tests -v
 python scripts/package.py
 ```
 
-Lambda 런타임은 Python 3.13입니다. boto3는 Lambda 런타임 제공 버전을 사용합니다. SDK를 로컬에서 사용하는 배포 스크립트에는 별도 boto3 설치와 기존 AWS 계정의 임시 인증이 필요합니다. 액세스 키나 토큰을 소스 코드에 넣지 않습니다.
+Lambda 런타임은 Python 3.13입니다. boto3는 Lambda 런타임 제공 버전을 사용합니다. 위 로컬 테스트와 ZIP 생성은 Python 기본 라이브러리만으로 실행할 수 있습니다. 액세스 키나 토큰을 소스 코드에 넣지 않습니다.
+
+실제 구성 값과 확인 결과는 [SETUP.md](SETUP.md)에 정리했습니다. [배포된 테스트 앱](https://4ihj2vcg89.execute-api.ap-northeast-2.amazonaws.com/)에서 두 버튼으로 API를 확인할 수 있습니다.
 
 ## 데이터와 권한
 
