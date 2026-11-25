@@ -1,4 +1,3 @@
-"""Build the Lambda ZIP using the Python standard library."""
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
