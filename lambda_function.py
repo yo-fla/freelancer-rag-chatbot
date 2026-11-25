@@ -1,4 +1,4 @@
-"""Week 2: public test API. Only fictional availability data is exposed."""
+"""Week 12: public test API. Only fictional availability data is exposed."""
 import json
 import logging
 import os
@@ -50,7 +50,7 @@ def lambda_handler(event, context, table=None):
         status, body = 405, {"message": "GET 요청만 사용할 수 있습니다."}
     elif path == "/health":
         status, body = 200, {"status": "ok", "service": "freelancer-chatbot",
-                             "stage": "week2", "message": "AWS 테스트 API가 정상 실행 중입니다."}
+                             "stage": "week12", "message": "AWS 테스트 API가 정상 실행 중입니다."}
     elif path == "/availability":
         try:
             body = public_availability(table if table is not None else availability_table())
