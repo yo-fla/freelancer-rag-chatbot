@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env*
+.aws/
+.deployment/
+dist/
+evidence/
+*.docx
+*.pdf
+

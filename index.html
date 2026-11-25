@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프리랜서 챗봇 2주차 실행 확인</title>
+<style>
+body{font-family:Arial,'Malgun Gothic',sans-serif;max-width:850px;margin:48px auto;padding:0 24px;color:#172b3a;background:#f5f7f9}
+main{background:white;padding:30px;border:1px solid #d6dde3;border-radius:8px}h1{font-size:25px}h2{font-size:18px;margin-top:28px}p{line-height:1.65;color:#405264}
+button{padding:10px 16px;margin-right:8px;border:1px solid #38556a;background:white;border-radius:4px;cursor:pointer;font-size:14px}button:hover{background:#eef4f8}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f3f6;padding:18px;line-height:1.6;font-size:14px}small{color:#596b79}
+</style>
+<main>
+<small>클라우드 아키텍처 · 2주차</small>
+<h1>프리랜서 챗봇 기본 실행 확인</h1>
+<p>API Gateway → Lambda → DynamoDB 연결을 확인하는 테스트 앱입니다.<br>표시되는 프리랜서 일정은 과제용 가상 데이터입니다.</p>
+<button id="health">서버 상태 확인</button><button id="availability">의뢰 가능 일정 조회</button>
+<h2 id="heading">실행 결과</h2>
+<pre id="result">위 버튼을 눌러 테스트하세요.</pre>
+<small id="checked"></small>
+<p>S3에는 소개서와 FAQ 샘플 문서를 보관합니다.<br>문서 검색과 AI 답변 기능은 이후 RAG 구현 단계에서 연결합니다.</p>
+</main>
+<script>
+async function check(path){
+ const output=document.getElementById('result');
+ output.textContent='확인 중...';
+ try{
+  const response=await fetch(path,{cache:'no-store'});
+  const data=await response.json();
+  document.getElementById('heading').textContent='GET '+path+' · HTTP '+response.status;
+  output.textContent=JSON.stringify(data,null,2);
+  document.getElementById('checked').textContent='확인 시각: '+new Date().toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})+' (한국 시간)';
+ }catch(error){output.textContent='요청에 실패했습니다. 연결 상태를 확인해 주세요.';}
+}
+document.getElementById('health').addEventListener('click',()=>check('/health'));
+document.getElementById('availability').addEventListener('click',()=>check('/availability'));
+</script>
+</html>
+
